@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs/CurrencyRatesApi/v17
+/CurrencyRates.Domain/obj
+/CurrencyRates.Infraestructure/obj
+/CurrencyRatesApi/.vs/CurrencyRatesApi
+/CurrencyRatesApi/bin/Debug/net6.0
+/CurrencyRatesApi/obj
