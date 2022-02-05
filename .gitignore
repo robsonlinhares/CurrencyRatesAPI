@@ -9,3 +9,5 @@
 /CurrencyRatesApi/bin/Debug/net6.0
 /CurrencyRatesApi/obj
 /.vs/CurrencyRatesApi
+/CurrencyRates.Infraestructure/bin/Debug/net6.0
+/CurrencyRates.Domain/bin/Debug/net6.0

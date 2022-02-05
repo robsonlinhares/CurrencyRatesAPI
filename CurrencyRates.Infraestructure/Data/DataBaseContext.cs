@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CurrencyRates.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CurrencyRates.Infraestructure.Data
 {
@@ -8,5 +9,7 @@ namespace CurrencyRates.Infraestructure.Data
         {
             Database.EnsureCreated();
         }
+
+        public DbSet<User> User { get; set; }
     }
 }
