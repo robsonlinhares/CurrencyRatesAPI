@@ -1,6 +1,7 @@
 ﻿using CurrencyRates.Domain.Interfaces.Repositories;
 using CurrencyRates.Domain.Models;
 using CurrencyRates.Infraestructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CurrencyRates.Infraestructure.Repositories
 {
@@ -18,5 +19,7 @@ namespace CurrencyRates.Infraestructure.Repositories
             await _databaseContext.User.AddAsync(user);
             await _databaseContext.SaveChangesAsync();
         }
+
+        public async Task<User> GetUserByEmail(string email) => await _databaseContext.User.FirstOrDefaultAsync(user => user.Email == email);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using CurrencyRates.Domain.Interfaces;
 using CurrencyRates.Domain.Interfaces.Repositories;
+using CurrencyRates.Domain.Interfaces.Services;
 using CurrencyRates.Domain.Notifications;
+using CurrencyRates.Domain.Services;
 using CurrencyRates.Infraestructure.Repositories;
 
 namespace CurrencyRates.Api.Configurations
@@ -11,6 +13,7 @@ namespace CurrencyRates.Api.Configurations
         {
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAuthService, AuthService>();
             //services.AddScoped<IUser, AspNetUser>();
 
             return services;

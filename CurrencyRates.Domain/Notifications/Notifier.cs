@@ -25,5 +25,10 @@ namespace CurrencyRates.Domain.Notifications
         {
             return _notifications.Any();
         }
+
+        public void Notify(string message)
+        {    
+            Handle(new Notification(message));
+        }
     }
 }

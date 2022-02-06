@@ -7,5 +7,6 @@ namespace CurrencyRates.Domain.Interfaces
         bool HasNotification();
         List<Notification> GetNotifications();
         void Handle(Notification notificacao);
+        void Notify(string message);
     }
 }
