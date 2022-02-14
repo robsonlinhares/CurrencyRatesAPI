@@ -1,4 +1,5 @@
 ﻿using CurrencyRates.Api.Configurations;
+using CurrencyRates.Api.Extensions;
 
 namespace CurrencyRates.Api
 {
@@ -18,6 +19,9 @@ namespace CurrencyRates.Api
             services.ResolveDependencies();
             services.AddCustomDatabase(Configuration);
             services.AddSwaggerGen();
+
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)

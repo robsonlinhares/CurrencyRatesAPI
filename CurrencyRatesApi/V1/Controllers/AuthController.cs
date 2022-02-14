@@ -11,11 +11,16 @@ namespace CurrencyRates.Api.V1.Controllers
     public class AuthController : MainController
     {
         private readonly IAuthService _authService;
+        private readonly ITokenService _tokenService;
+        private readonly INotifier _notifier;
 
-        public AuthController(INotifier notifier, 
-                              IAuthService authService) : base(notifier)
+        public AuthController(INotifier notifier,
+                              IAuthService authService, 
+                              ITokenService tokenService) : base(notifier)
         {
             _authService = authService;
+            _tokenService = tokenService;
+            _notifier = notifier;
         }
 
         [HttpGet()]
@@ -24,12 +29,15 @@ namespace CurrencyRates.Api.V1.Controllers
             return "Rob";
         }
 
-        [HttpPost()]
+        [HttpPost("new-account")]
         public async Task<ActionResult> Register(RegisterUserDto registerUserDto)
         {
             await _authService.CreateUser(registerUserDto);
 
-            return CustomResponse(Ok());
+            if (_notifier.HasNotification())
+                return CustomResponse();
+
+            return CustomResponse(await _tokenService.GenerateToken(registerUserDto.Email));
         }
     }
 }

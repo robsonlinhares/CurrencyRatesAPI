@@ -14,6 +14,5 @@ namespace CurrencyRates.Domain.Dtos
 
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
-
     }
 }
