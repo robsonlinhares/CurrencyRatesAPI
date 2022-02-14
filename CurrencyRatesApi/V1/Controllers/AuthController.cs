@@ -32,12 +32,24 @@ namespace CurrencyRates.Api.V1.Controllers
         [HttpPost("new-account")]
         public async Task<ActionResult> Register(RegisterUserDto registerUserDto)
         {
-            await _authService.CreateUser(registerUserDto);
+            var user = await _authService.CreateUser(registerUserDto);
 
             if (_notifier.HasNotification())
                 return CustomResponse();
 
-            return CustomResponse(await _tokenService.GenerateToken(registerUserDto.Email));
+            return CustomResponse(await _tokenService.GenerateToken(user));
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> Login(LoginUserDto loginUserDto)
+        {
+            var user = await _authService.Login(loginUserDto);
+
+            if (_notifier.HasNotification())
+                return CustomResponse();
+
+
+            return CustomResponse(await _tokenService.GenerateToken(user));
         }
     }
 }

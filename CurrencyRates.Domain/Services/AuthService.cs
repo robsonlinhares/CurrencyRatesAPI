@@ -18,17 +18,34 @@ namespace CurrencyRates.Domain.Services
             _userRepository = userRepository;            
         }
 
-        public async Task CreateUser(RegisterUserDto registerUser)
+        public async Task<User> CreateUser(RegisterUserDto registerUser)
         {
             var user = await _userRepository.GetUserByEmail(registerUser.Email);
 
             if (user != null)
             {
                 _notifier.Notify($"E-mail already registered. {registerUser.Email}");
-                return;
+                return new User();
             }
 
-            await _userRepository.CreateUser(await CreateUserDomain(registerUser));
+            user = await CreateUserDomain(registerUser);
+
+            await _userRepository.CreateUser(user);
+
+            return user;
+        }
+
+        public async Task<User> Login(LoginUserDto loginUserDto)
+        {
+            var user = await _userRepository.Login(loginUserDto.Email, loginUserDto.Password);
+
+            if(user == null)
+            {
+                _notifier.Notify($"E-mail or password invalid. {loginUserDto.Email}");
+                return new User();
+            }            
+
+            return user;
         }
 
         private async Task<User> CreateUserDomain(RegisterUserDto registerUser)

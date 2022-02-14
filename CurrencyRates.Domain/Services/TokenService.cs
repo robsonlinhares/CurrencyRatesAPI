@@ -1,6 +1,6 @@
 ﻿using CurrencyRates.Api.Extensions;
-using CurrencyRates.Domain.Interfaces.Repositories;
 using CurrencyRates.Domain.Interfaces.Services;
+using CurrencyRates.Domain.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,19 +11,15 @@ namespace CurrencyRates.Domain.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly AppSettings _appSettings;
-        private readonly IUserRepository _userRepository;       
+        private readonly AppSettings _appSettings;        
 
-        public TokenService(IOptions<AppSettings> appSettings,
-                            IUserRepository userRepository)
+        public TokenService(IOptions<AppSettings> appSettings)
         {
-            _appSettings = appSettings.Value;
-            _userRepository = userRepository;
+            _appSettings = appSettings.Value;            
         }
 
-        async Task<string> ITokenService.GenerateToken(string email)
-        {
-            var user = await _userRepository.GetUserByEmail(email);                   
+        public async Task<string> GenerateToken(User user)
+        {                            
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
 
@@ -42,7 +38,7 @@ namespace CurrencyRates.Domain.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token);
+            return await Task.FromResult(tokenHandler.WriteToken(token));
         }
     }
 }

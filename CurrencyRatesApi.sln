@@ -5,9 +5,14 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRates.Api", "CurrencyRatesApi\CurrencyRates.Api.csproj", "{B945E485-DF22-4073-BC13-421907D31556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRates.Domain", "CurrencyRates.Domain\CurrencyRates.Domain.csproj", "{79DD8681-1A7E-4C7A-9291-FF2BCE72E77A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRates.Domain", "CurrencyRates.Domain\CurrencyRates.Domain.csproj", "{79DD8681-1A7E-4C7A-9291-FF2BCE72E77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyRates.Infraestructure", "CurrencyRates.Infraestructure\CurrencyRates.Infraestructure.csproj", "{2B7455D9-E483-4C77-A760-820D7A9CDB6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyRates.Infraestructure", "CurrencyRates.Infraestructure\CurrencyRates.Infraestructure.csproj", "{2B7455D9-E483-4C77-A760-820D7A9CDB6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95145493-0824-4127-A484-78BD3BE77098}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

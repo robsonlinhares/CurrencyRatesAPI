@@ -4,6 +4,6 @@ namespace CurrencyRates.Domain.Interfaces.Services
 {
     public interface ITokenService
     {
-        Task<string> GenerateToken(string email);
+        Task<string> GenerateToken(User user);
     }
 }

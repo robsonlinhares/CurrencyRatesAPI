@@ -20,6 +20,8 @@ namespace CurrencyRates.Infraestructure.Repositories
             await _databaseContext.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserByEmail(string email) => await _databaseContext.User.FirstOrDefaultAsync(user => user.Email == email);
+        public async Task<User?> GetUserByEmail(string email) => await _databaseContext.User.FirstOrDefaultAsync(user => user.Email == email);
+
+        public async Task<User?> Login(string email, string password) => await _databaseContext.User.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
     }
 }
