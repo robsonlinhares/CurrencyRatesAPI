@@ -2,6 +2,7 @@
 using CurrencyRates.Domain.Dtos;
 using CurrencyRates.Domain.Interfaces;
 using CurrencyRates.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurrencyRates.Api.V1.Controllers
@@ -24,6 +25,7 @@ namespace CurrencyRates.Api.V1.Controllers
         }
 
         [HttpGet()]
+        [Authorize]
         public string Get()
         {
             return "Rob";
