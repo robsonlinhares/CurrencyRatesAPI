@@ -2,9 +2,8 @@
 
 namespace CurrencyRates.Domain.Interfaces.Repositories
 {
-    public  interface IUserRepository
-    {
-        Task CreateUser(User user);
+    public  interface IUserRepository : IRepository<User>
+    {       
         Task<User?> GetUserByEmail(string email);
         Task<User?> Login(string email, string password);
     }

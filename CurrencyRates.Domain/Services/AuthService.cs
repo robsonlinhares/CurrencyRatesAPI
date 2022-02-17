@@ -30,7 +30,7 @@ namespace CurrencyRates.Domain.Services
 
             user = await CreateUserDomain(registerUser);
 
-            await _userRepository.CreateUser(user);
+            await _userRepository.Add(user);
 
             return user;
         }

@@ -14,7 +14,7 @@ namespace CurrencyRates.Api.Configurations
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<ITokenService, TokenService>();    
+            services.AddScoped<ITokenService, TokenService>();            
             //services.AddScoped<IUser, AspNetUser>();
 
             return services;
