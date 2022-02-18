@@ -7,5 +7,7 @@ namespace CurrencyRates.Domain.Interfaces.Services
     {
         Task<User> CreateUser(RegisterUserDto registerUser);
         Task<User> Login(LoginUserDto loginUserDto);
+        Task<IEnumerable<UsersDto>> GetAllUsers();
+
     }
 }

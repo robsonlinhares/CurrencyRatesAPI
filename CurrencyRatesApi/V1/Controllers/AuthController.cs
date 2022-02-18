@@ -25,13 +25,14 @@ namespace CurrencyRates.Api.V1.Controllers
         }
 
         [HttpGet()]
-        [Authorize]
+        [AllowAnonymous]
         public string Get()
         {
             return "Rob";
         }
 
         [HttpPost("new-account")]
+        [AllowAnonymous]
         public async Task<ActionResult> Register(RegisterUserDto registerUserDto)
         {
             var user = await _authService.CreateUser(registerUserDto);
@@ -43,6 +44,7 @@ namespace CurrencyRates.Api.V1.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult> Login(LoginUserDto loginUserDto)
         {
             var user = await _authService.Login(loginUserDto);
@@ -52,6 +54,13 @@ namespace CurrencyRates.Api.V1.Controllers
 
 
             return CustomResponse(await _tokenService.GenerateToken(user));
+        }
+
+        [HttpGet("get-all-users")]
+        [Authorize]
+        public async Task<ActionResult> GetAllUser()
+        {                      
+            return CustomResponse(await _authService.GetAllUsers());
         }
     }
 }

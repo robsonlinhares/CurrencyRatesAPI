@@ -9,13 +9,13 @@ namespace CurrencyRates.Domain.Services
     public class AuthService : IAuthService
     {
         private readonly INotifier _notifier;
-        private readonly IUserRepository _userRepository;        
+        private readonly IUserRepository _userRepository;
 
         public AuthService(INotifier notifier,
                            IUserRepository userRepository)
         {
             _notifier = notifier;
-            _userRepository = userRepository;            
+            _userRepository = userRepository;
         }
 
         public async Task<User> CreateUser(RegisterUserDto registerUser)
@@ -39,13 +39,26 @@ namespace CurrencyRates.Domain.Services
         {
             var user = await _userRepository.Login(loginUserDto.Email, loginUserDto.Password);
 
-            if(user == null)
+            if (user == null)
             {
                 _notifier.Notify($"E-mail or password invalid. {loginUserDto.Email}");
                 return new User();
-            }            
+            }
 
             return user;
+        }
+
+        public async Task<IEnumerable<UsersDto>> GetAllUsers()
+        {
+            var users = await _userRepository.GetAll();
+
+            if (!users.Any())
+            {
+                _notifier.Notify($"Users not found in database");
+                return new List<UsersDto>();
+            }
+
+            return await GetUsersDto(users);
         }
 
         private async Task<User> CreateUserDomain(RegisterUserDto registerUser)
@@ -60,6 +73,19 @@ namespace CurrencyRates.Domain.Services
             };
 
             return await Task.FromResult(user);
+        }
+
+        private async Task<IEnumerable<UsersDto>> GetUsersDto(IEnumerable<User> users)
+        {
+            return await Task.FromResult(users.Select
+                                        (u => new UsersDto
+                                        {
+                                            Id = u.Id,
+                                            Email = u.Email,
+                                            Active = u.Active,
+                                            Role = u.Role,
+                                            CreatedAt = u.CreatedAt
+                                        }));
         }
     }
 }
