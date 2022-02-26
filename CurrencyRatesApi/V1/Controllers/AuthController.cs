@@ -23,13 +23,7 @@ namespace CurrencyRates.Api.V1.Controllers
             _tokenService = tokenService;
             _notifier = notifier;
         }
-
-        [HttpGet()]
-        [AllowAnonymous]
-        public string Get()
-        {
-            return "Rob";
-        }
+      
 
         [HttpPost("new-account")]
         [AllowAnonymous]
