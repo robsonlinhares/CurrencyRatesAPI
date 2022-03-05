@@ -8,22 +8,11 @@ namespace CurrencyRates.Api.Controllers
     [ApiController]
     public abstract class MainController : ControllerBase
     {
-        private readonly INotifier _notifier;
-        //public readonly IUser _user;
-
-        //protected Guid UsuarioId { get; set; }
-        //protected bool UsuarioAutenticado { get; set; }
+        private readonly INotifier _notifier;    
 
         protected MainController(INotifier notifier)
         {
-            _notifier = notifier;
-            //_user = user;
-
-            //if (_user.IsAuthenticated())
-            //{
-            //    UsuarioId = _user.GetUserId();
-            //    UsuarioAutenticado = true;
-            //}
+            _notifier = notifier;          
         }
 
         protected bool ValidOperation()

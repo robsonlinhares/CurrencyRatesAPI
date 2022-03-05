@@ -13,9 +13,12 @@ namespace CurrencyRates.Api.Configurations
         {
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICurrencyTransactionRepository, CurrencyTransactionRepository>();
+            services.AddScoped<IExchangeRateApiIntegrationRepository, ExchangeRateApiIntegrationRepository>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<ITokenService, TokenService>();            
-            //services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IBaseRequestService, BaseRequestService>();
+            services.AddScoped<ICurrencyTransactionService, CurrencyTransactionService>();
 
             return services;
         }

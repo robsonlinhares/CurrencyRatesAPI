@@ -1,6 +1,7 @@
 ﻿using CurrencyRates.Api.Controllers;
 using CurrencyRates.Domain.Dtos;
 using CurrencyRates.Domain.Interfaces;
+using CurrencyRates.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,12 @@ namespace CurrencyRates.Api.V1.Controllers
     public class CurrencyTransactionController : MainController
     {
         private readonly INotifier _notifier;
-        public CurrencyTransactionController(INotifier notifier): base(notifier)
+        private readonly ICurrencyTransactionService _currencyTransactionService;
+        public CurrencyTransactionController(INotifier notifier,
+                                             ICurrencyTransactionService currencyTransactionService) : base(notifier)
         {
             _notifier = notifier;
+            _currencyTransactionService = currencyTransactionService;
         }
 
         [HttpPost("currency-transaction")]
@@ -20,6 +24,8 @@ namespace CurrencyRates.Api.V1.Controllers
         {          
             if (_notifier.HasNotification())
                 return CustomResponse();
+
+            await _currencyTransactionService.CurrencyConversion(currencyTransactionDto);
 
             return CustomResponse();
         }

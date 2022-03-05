@@ -27,7 +27,7 @@ namespace CurrencyRates.Infraestructure.Repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public virtual async Task<List<TEntity>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
             return await _dbSet.ToListAsync();
         }

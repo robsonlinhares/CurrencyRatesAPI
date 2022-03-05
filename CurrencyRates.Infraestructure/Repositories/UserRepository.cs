@@ -9,13 +9,7 @@ namespace CurrencyRates.Infraestructure.Repositories
     {       
         public UserRepository(DataBaseContext databaseContext): base(databaseContext)
         {            
-        }
-
-        //public async Task CreateUser(User user)
-        //{
-        //    await _databaseContext.User.AddAsync(user);
-        //    await _databaseContext.SaveChangesAsync();
-        //}
+        }      
 
         public async Task<User?> GetUserByEmail(string email) => await _databaseContext.User.FirstOrDefaultAsync(user => user.Email == email);
 

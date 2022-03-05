@@ -45,7 +45,6 @@ namespace CurrencyRates.Api
                     ValidateAudience = false
                 };
             });
-
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)

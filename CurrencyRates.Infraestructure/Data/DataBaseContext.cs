@@ -11,5 +11,6 @@ namespace CurrencyRates.Infraestructure.Data
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<CurrencyTransaction> CurrencyTransaction { get; set; }
     }
 }

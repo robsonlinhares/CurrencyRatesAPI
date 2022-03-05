@@ -5,7 +5,7 @@ namespace CurrencyRates.Domain.Dtos
     public class CurrencyTransactionDto
     {
         [Required(ErrorMessage = "The Field {0} is required")]
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         [Required(ErrorMessage = "The Field {0} is required")]
         public string FromCurrency { get; set; }

@@ -7,7 +7,7 @@ namespace CurrencyRates.Domain.Interfaces.Repositories
     {
         Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> GetById(Guid id);
-        Task<List<TEntity>> GetAll();
+        Task<IEnumerable<TEntity>> GetAll();
         Task Add(TEntity entity);
         Task Update(TEntity entity);
         Task Delete(Guid id);
