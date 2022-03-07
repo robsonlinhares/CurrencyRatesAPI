@@ -1,4 +1,6 @@
-﻿using CurrencyRates.Domain.Interfaces.Repositories;
+﻿using CurrencyRates.Domain.Dtos;
+using CurrencyRates.Domain.Interfaces.Repositories;
+using CurrencyRates.Domain.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 
 namespace CurrencyRates.Infraestructure.Repositories
@@ -6,16 +8,20 @@ namespace CurrencyRates.Infraestructure.Repositories
     public class ExchangeRateApiIntegrationRepository : IExchangeRateApiIntegrationRepository
     {
         private readonly IConfiguration _configuration;
+        private readonly IBaseRequestService _baseRequestService;
 
-        public ExchangeRateApiIntegrationRepository(IConfiguration configuration)
+        public ExchangeRateApiIntegrationRepository(IConfiguration configuration,
+                                                    IBaseRequestService baseRequestService)
         {
             _configuration = configuration;
+            _baseRequestService = baseRequestService;
         }
 
         public async Task<double> GetExchangeRate(string fromCurrency, string toCurrency)
         {
-            var endpoint = GetApiLayerUrl(fromCurrency, toCurrency);
-
+            var apiLayerDto = new ApiLayerDto();
+            var endpoint = await GetApiLayerUrl(fromCurrency, toCurrency);
+            apiLayerDto = await _baseRequestService.PostAsync<ApiLayerDto>(apiLayerDto, endpoint);
 
 
             return 0;

@@ -9,12 +9,15 @@ namespace CurrencyRates.Domain.Services
     {
         private readonly INotifier _notifier;
         private readonly IUserRepository _userRepository;
+        private readonly IExchangeRateApiIntegrationRepository _exchangeRateApiIntegrationRepository;
 
         public CurrencyTransactionService(INotifier notifier,
-                                          IUserRepository userRepository)
+                                          IUserRepository userRepository,
+                                          IExchangeRateApiIntegrationRepository exchangeRateApiIntegrationRepository)
         {
             _notifier = notifier;
             _userRepository = userRepository;
+            _exchangeRateApiIntegrationRepository = exchangeRateApiIntegrationRepository;
         }
 
         public async Task CurrencyConversion(CurrencyTransactionDto currencyTransactionDto)
@@ -26,6 +29,9 @@ namespace CurrencyRates.Domain.Services
                 _notifier.Notify($"User not found. UserID: {currencyTransactionDto.UserId}");
                 return;
             }
+
+            var teste = await _exchangeRateApiIntegrationRepository.GetExchangeRate(currencyTransactionDto.FromCurrency, currencyTransactionDto.ToCurrency);
+
 
         }
     }
