@@ -18,8 +18,7 @@ namespace CurrencyRates.Domain.Dtos
 
         [JsonPropertyName("source")]
         public string Source { get; set; }
-
-        // public IEnumerable<RatesDto> Quotes { get; set; }
+        
         [JsonPropertyName("quotes")]
         public IDictionary<string, double> Quotes { get; set; }
     }

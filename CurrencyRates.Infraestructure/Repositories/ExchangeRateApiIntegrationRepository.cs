@@ -21,10 +21,11 @@ namespace CurrencyRates.Infraestructure.Repositories
         {
             var apiLayerDto = new ApiLayerDto();
             var endpoint = await GetApiLayerUrl(fromCurrency, toCurrency);
-            apiLayerDto = await _baseRequestService.PostAsync<ApiLayerDto>(apiLayerDto, endpoint);
+            apiLayerDto = await _baseRequestService.PostAsync<ApiLayerDto>(apiLayerDto, endpoint);  
+            
+            var rate = apiLayerDto?.Quotes.FirstOrDefault(q => q.Key == $"{toCurrency}{fromCurrency}").Value;
 
-
-            return 0;
+            return rate ?? 0;
         }
 
         private async Task<string> GetApiLayerUrl(string fromCurrency, string toCurrency)
