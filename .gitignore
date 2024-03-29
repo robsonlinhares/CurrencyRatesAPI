@@ -11,3 +11,7 @@
 /.vs/CurrencyRatesApi
 /CurrencyRates.Infraestructure/bin/Debug/net6.0
 /CurrencyRates.Domain/bin/Debug/net6.0
+/CurrencyRates.Domain/bin/Debug/net8.0
+/CurrencyRates.Infraestructure/bin/Debug/net8.0
+/CurrencyRatesApi/bin/Debug/net8.0
+/.vs
